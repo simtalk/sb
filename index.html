@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Starboat - 星舟航天</title>
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "PingFang SC", "微软雅黑", Arial, sans-serif;
+        }
+        body {
+            width: 100%;
+            min-height: 100vh;
+            background: radial-gradient(circle at center, #fffbf5 0%, #fff5ef 30%, #ffebe0 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            user-select: none;
+            position: relative;
+            overflow: hidden;
+            padding-bottom: 40px;
+        }
+        body::before, body::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(245, 166, 35, 0.08);
+            z-index: 0;
+        }
+        body::before {
+            width: 500px;
+            height: 500px;
+            top: -250px;
+            right: -250px;
+        }
+        body::after {
+            width: 600px;
+            height: 600px;
+            bottom: -300px;
+            left: -300px;
+        }
+        .main-container {
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            -webkit-backdrop-filter: blur(12px);
+            padding: 40px 20px;
+            border-radius: 20px;
+            position: relative;
+            z-index: 2;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+        .logo-box {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .logo-img {
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+        .year-label {
+            font-size: 18px;
+            color: #C8102E;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 25px;
+        }
+        .year-label i {
+            color: #F5A623;
+        }
+		.starboat {
+			font-size: 80px;
+			font-weight: 800;
+			color: #222;
+			letter-spacing: 5px;
+			margin-bottom: 20px;
+			text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+			white-space: nowrap;
+			transition: all 0.3s ease;
+			display: inline-block;
+			position: relative;
+		}
+		.starboat span {
+			display: inline-block;
+			opacity: 0;
+			transform: translateY(15px);
+			animation: fadeInUp 0.5s ease-out forwards;
+		}
+		@keyframes fadeInUp {
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+		.starboat:hover {
+			transform: scale(1.03);
+			color: #C8102E;
+			text-shadow: 0 3px 6px rgba(200, 16, 46, 0.1);
+		}
+        .bless-text {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+        .bless-text span {
+            color: #C8102E;
+            font-weight: 600;
+        }
+        .visit-count {
+            font-size: 15px;
+            color: #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+        .visit-count i {
+            color: #F5A623;
+        }
+        .visit-count .count-num {
+            color: #C8102E;
+            font-weight: 600;
+            min-width: 40px;
+            display: inline-block;
+            text-align: center;
+        }
+        .footer {
+            font-size: 14px;
+            color: #888;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+            z-index: 2;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .domain-inquire {
+            font-size: 12px;
+            color: #888;
+            opacity: 0.8;
+            white-space: nowrap;
+        }
+        .footer > div {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .footer i {
+            color: #F5A623;
+        }
+        @media (max-width: 768px) {
+            .starboat {
+                font-size: 60px;
+                letter-spacing: 4px;
+                display: block;
+                left: auto;
+                transform: none;
+            }
+            .starboat:hover {
+                transform: scale(1.03);
+            }
+            .year-label {
+                font-size: 17px;
+            }
+            .main-container {
+                padding: 30px 15px;
+                border-radius: 16px;
+            }
+            body::before {
+                width: 380px;
+                height: 380px;
+                top: -190px;
+                right: -190px;
+            }
+            body::after {
+                width: 400px;
+                height: 400px;
+                bottom: -200px;
+                left: -200px;
+            }
+            .footer {
+                transform: translateY(0);
+                margin-bottom: 0;
+            }
+            .logo-img {
+                max-width: 200px;
+            }
+        }
+        @media (max-width: 600px) {
+            .starboat {
+                font-size: 45px;
+                letter-spacing: 3px;
+            }
+            .year-label {
+                font-size: 16px;
+                margin-bottom: 20px;
+            }
+            .bless-text {
+                font-size: 15px;
+            }
+            .visit-count { font-size: 14px; }
+            .main-container {
+                padding: 25px 10px;
+                border-radius: 14px;
+            }
+            .logo-img {
+                max-width: 200px;
+            }
+        }
+        @media (max-width: 375px) {
+            .starboat {
+                font-size: 38px;
+                letter-spacing: 2px;
+            }
+            body {
+                padding: 15px;
+                padding-bottom: 30px;
+            }
+            .main-container {
+                padding: 20px 8px;
+                border-radius: 12px;
+            }
+            .bless-text { font-size: 14px; }
+            .visit-count { font-size: 13px; }
+            body::before {
+                width: 280px;
+                height: 280px;
+                top: -140px;
+                right: -140px;
+            }
+            body::after {
+                width: 300px;
+                height: 300px;
+                bottom: -150px;
+                left: -150px;
+            }
+            .footer {
+                font-size: 13px;
+                gap: 10px;
+            }
+            .domain-inquire {
+                font-size: 11px;
+                margin-bottom: 3px;
+            }
+            .logo-img {
+                max-width: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="logo-box">
+            <img src="https://ame.sciv.cn/starboat/logo.png" alt="星舟航天" class="logo-img">
+        </div>
+        <div class="year-label">
+            <i class="fas fa-horse-head"></i>
+            2026 农历丙午马年
+        </div>
+        <h1 class="starboat">
+            <span>S</span><span>t</span><span>a</span><span>r</span><span>b</span><span>o</span><span>a</span><span>t</span>
+        </h1>
+        <p class="bless-text">星舟逐梦 · <span>旗开得胜</span></p>
+        <div class="visit-count">
+            <i class="fas fa-eye"></i>
+            页面累计访问 : <span class="count-num" id="visit-num">0</span> 次
+        </div>
+    </div>
+    <div class="footer">
+        <div class="domain-inquire">如您对此域名感兴趣，可通过下方地址进行询价</div>
+        <div><i class="fas fa-fu"></i> 邮箱 : 6181686@gmail.com</div>
+        <div><i class="fas fa-clock"></i> 当前时间 : <span id="current-time"></span></div>
+    </div>
+
+    <script>
+        const charSpans = document.querySelectorAll('.starboat span');
+        charSpans.forEach((span, index) => {
+            span.style.animationDelay = `${index * 0.1}s`;
+        });
+
+        function animateCount(targetNum, duration = 1000) {
+            const countEl = document.getElementById('visit-num');
+            let currentNum = 0;
+            const step = targetNum / (duration / 16);
+
+            const timer = setInterval(() => {
+                currentNum += step;
+                if (currentNum >= targetNum) {
+                    clearInterval(timer);
+                    countEl.textContent = targetNum;
+                } else {
+                    countEl.textContent = Math.floor(currentNum);
+                }
+            }, 16);
+        }
+
+        async function getGlobalVisitCount() {
+            const apiUrl = 'https://ame.sciv.cn/starboat/visit_count_api.php';
+            try {
+                const res = await fetch(apiUrl, {
+                    method: 'GET',
+                    cache: 'no-cache'
+                });
+                const data = await res.json();
+                if (data.code === 200 && !isNaN(data.count)) {
+                    animateCount(parseInt(data.count));
+                }
+            } catch (err) {
+                console.log('Tips：', err.message);
+            }
+        }
+
+        function updateCurrentTime() {
+            const now = new Date();
+            const formattedTime = now.toLocaleString('zh-CN', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            }).replace(/\//g, '-');
+            document.getElementById('current-time').textContent = formattedTime;
+        }
+
+        getGlobalVisitCount();
+        updateCurrentTime();
+        setInterval(updateCurrentTime, 1000);
+    </script>
+</body>
+</html>
